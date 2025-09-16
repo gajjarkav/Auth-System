@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SecureAuth{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-lg font-semibold text-gray-900">
+                            🔐 SecureAuth
+                        </h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                        Home
+                    </a>
+                    <a href="/register" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                        Register
+                    </a>
+                    <a href="/login" class="text-emerald-600 hover:text-emerald-700 px-4 py-2 text-sm font-medium border border-emerald-600 rounded-md hover:bg-emerald-50">
+                        Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1">
+        {% block content %}
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Welcome to SecureAuth</h1>
+                {% if message %}
+                    <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-md">
+                        {{ message }}
+                    </div>
+                {% endif %}
+                <p class="text-lg text-gray-600 mb-8">A simple and secure authentication system</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="/register" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-md font-medium">
+                        Get Started
+                    </a>
+                    <a href="/login" class="text-emerald-600 hover:text-emerald-700 px-6 py-3 font-medium border border-emerald-600 rounded-md hover:bg-emerald-50">
+                        Sign In
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+
+    <footer class="bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center text-gray-500 text-sm">
+                <p>&copy; 2025 SecureAuth. Built with FastAPI & Tailwind CSS.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
