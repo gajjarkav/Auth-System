@@ -32,7 +32,7 @@ A clean and professional authentication system built with FastAPI and styled wit
 
 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/gajjarkav/Auth-System.git
 cd authentication
 ```
 
