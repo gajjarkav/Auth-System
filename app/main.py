@@ -4,7 +4,7 @@ from app.database import Base, engine, get_db
 from app import crud, schemas, models
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-
+from ratelimitor import rate_limiter
 
 Base.metadata.create_all(bind=engine)
 
@@ -27,7 +27,9 @@ def register_get(request:Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
 @app.post('/register', response_model=schemas.UserRead, response_class=HTMLResponse)
-def register(    request: Request,
+@rate_limiter(max_requests=5, period=60)  # Limit to 5 requests per minute
+def register(
+    request: Request,
     username: str = Form(...),
     email: str = Form(...),
     password: str = Form(...),
@@ -47,6 +49,7 @@ def login(request:Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
 @app.post('/login', response_class=HTMLResponse)
+@rate_limiter(max_requests=5, period=60)
 def login_user(
     request: Request,
     email: str = Form(...),
